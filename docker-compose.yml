@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  xraydemo:
+    depends_on:
+      - "xraydaemon"
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+      - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+      - "AWS_REGION=us-east-1"
+      - "AWS_XRAY_DAEMON_ADDRESS=xraydaemon:2000"
+  xraydaemon:
+    image: "amazon/aws-xray-daemon"
+    entrypoint: ["/usr/bin/xray", "-t", "0.0.0.0:2000", "-b", "0.0.0.0:2000", "--local-mode"]
+    environment:
+      - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+      - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+      - "AWS_REGION=us-east-1"
+
