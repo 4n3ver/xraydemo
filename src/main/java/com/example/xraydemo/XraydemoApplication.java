@@ -11,9 +11,9 @@ import javax.servlet.Filter;
 
 @SpringBootApplication
 public class XraydemoApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(XraydemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(XraydemoApplication.class, args);
+    }
 
     @Bean
     public FilterRegistrationBean<Filter> xrayFilter() {

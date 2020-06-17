@@ -1,14 +1,14 @@
 plugins {
-	id "org.springframework.boot" version "2.3.1.RELEASE"
-	id "io.spring.dependency-management" version "1.0.9.RELEASE"
-	id "java"
+    id "org.springframework.boot" version "2.3.1.RELEASE"
+    id "io.spring.dependency-management" version "1.0.9.RELEASE"
+    id "java"
 }
 
 group = "com.example"
 sourceCompatibility = "11"
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 ext {
@@ -16,16 +16,19 @@ ext {
 }
 
 dependencies {
-	implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "com.amazonaws:aws-xray-recorder-sdk-core:$awsXraySdkVersion"
     implementation "com.amazonaws:aws-xray-recorder-sdk-spring:$awsXraySdkVersion"
-    implementation "com.amazonaws:aws-xray-recorder-sdk-aws-sdk:$awsXraySdkVersion"
     runtimeOnly "org.springframework.data:spring-data-commons"
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude group: "org.junit.vintage", module: "junit-vintage-engine"
-	}
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    }
+}
+
+bootJar {
+    layered()
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

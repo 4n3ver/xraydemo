@@ -10,5 +10,6 @@ import org.springframework.stereotype.Component;
 public class XrayInterceptor extends AbstractXRayInterceptor {
     @Override
     @Pointcut("@annotation(com.amazonaws.xray.spring.aop.XRayEnabled) || @within(com.amazonaws.xray.spring.aop.XRayEnabled)")
-    public void xrayEnabledClasses() {}
+    public void xrayEnabledClasses() {
+    }
 }
